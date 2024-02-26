@@ -1,0 +1,43 @@
+import datetime as dt
+import requests
+BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
+API_KEY = open ('adca78afb69a52bc4aeef924f9319e49' , 'r').read()
+CITY = "Hai Duong"
+
+
+
+def kelvin_to_celsius_fahrenheit(kelvin):
+    celsius = kelvin -273.15
+    fahrenheit = celsius * (9/5) + 32
+    return celsius, fahrenheit
+
+
+url = BASE_URL + "appid=" + adca78afb69a52bc4aeef924f9319e49 + "&q=" + HaiDuong
+response = requests.get(url).json()
+
+temp_kelvin = response['main']['temp']
+temp_celsius, temp_fahrenheit = kelvin_to_celsius_fahrenheit(temp_kelvin)
+feels_like_kelvin = response['main']['feels_like']
+feels_like_celsius, feels_like_fahrenheit = kelvin_to_celsius_fahrenheit('feels_like_kelvin')
+wind_speed = response['wind']['speed']
+humidity = response['main']['humidity']
+descripton = response['weather'][0]['descripton']
+sunrise_time = dt.datetime.utcfromtimestamp(response['sys']['sunrise'] + response['timezone'])
+sunrset_time = dt.datetime.utcfromtimestamp(response['sys']['sunrise'] + response['timezone'])
+
+print(f"Temperature in Hai Duong: {temp_celsius:.2f}°C or {temp_fahrenheit:.2f}°F")
+print(f"Temperature in Hai Duong:  feels like:{feels_like_celsius:.2f}°C or {feels_like_fahrenheit:.2f}°F")
+print(f"Humidity in Hai Duong: {humidity}%")
+print(f"Wind Speed in Hai Duong: {wind_speed}m/s")
+print(f"Sun rises in Hai Duong: {sunrise_time} local time.")
+print(f"Sun set in Hai Duong: {sunrset_time} local time.")
+print(f"General Weather in Hai Duong: {descripton}")
+
+
+print(f"Temperature in Hai Duong: {temp_celsius:.2f}°C or {temp_fahrenheit:.2f}°F")
+print(f"Temperature in Hai Duong:  feels like:{feels_like_celsius:.2f}°C or {feels_like_fahrenheit:.2f}°F")
+print(f"Humidity in Hai Duong: {humidity}%")
+print(f"Wind Speed in Hai Duong: {wind_speed}m/s")
+print(f"Sun rises in Hai Duong: {sunrise_time} local time.")
+print(f"Sun set in Hai Duong: {sunrset_time} local time.")
+print(f"General Weather in Hai Duong: {descripton}")
